@@ -2,7 +2,7 @@ import React from "react";
 import firebase from 'firebase';
 
 
-import {BrowserRouter as Router, Route, Link, useHistory} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 import "./App.css";
 
@@ -77,7 +77,7 @@ class App extends React.Component {
         <div>
           {drink.description}
         </div>
-        <img src={drink.image}/>
+        <img alt="drink" src={drink.image}/>
         <button style={{"marginBottom": "50px"}} onClick={() => this.setState({selectedDrink: drink})}>ELEGIR</button>
       </div>
     )
@@ -93,7 +93,7 @@ class App extends React.Component {
           {order.drink.name}
         </h3>
         <div style={{"color": order.status === "Listo" ? "green" : "red"}} className="status">Estado: {order.status}</div>
-        <img src={order.drink.image}/>
+        <img alt="drink" src={order.drink.image}/>
       </div>
     )
   }
@@ -107,7 +107,7 @@ class App extends React.Component {
           {order.drink.name}
         </h3>
         <div style={{"color": order.status === "Listo" ? "green" : "red"}} className="status">Estado: {order.status}</div>
-        <img src={order.drink.image}/>
+        <img alt="drink" src={order.drink.image}/>
         <button style={{"margin": "20px 0"}} onClick={() => this.handleMakeReady(order)}>HACER LISTO</button>
         <button onClick={() => this.handleDelete(order)}>BORRAR</button>
       </div>
