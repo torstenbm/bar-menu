@@ -43,7 +43,7 @@ class App extends React.Component {
         appId: "1:152548045451:web:1cae6211de33be5f421a8e"
       };
 
-      const firebaseApp = firebase.initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
     } catch (e) {
       console.log(e)
     }
