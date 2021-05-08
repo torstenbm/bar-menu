@@ -117,7 +117,6 @@ class App extends React.Component {
              className="status">Estado: {order.status}</div>
         <img alt="drink" src={order.drink.image}/>
         <button style={{"margin": "20px 0"}} onClick={() => this.handleMakeReady(order)}>HACER LISTO</button>
-        <button onClick={() => this.handleDelete(order)}>BORRAR</button>
       </div>
     )
   }
@@ -152,7 +151,7 @@ class App extends React.Component {
   AdminComponent = () => {
     return (
       <React.Fragment>
-        {this.state.orders.map(this.renderOrderForAdmins)}
+        {this.state.orders.reverse().map(this.renderOrderForAdmins)}
       </React.Fragment>
     )
   }
