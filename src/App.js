@@ -52,7 +52,6 @@ class App extends React.Component {
       drinks: [],
       orders: [],
       selectedDrink: null,
-      shouldRedirectToStatus: false,
       name: ""
     };
     this.handleChange = this.handleChange.bind(this);
@@ -134,12 +133,10 @@ class App extends React.Component {
       <React.Fragment>
         {this.state.drinks.map(this.renderDrink)}
         {this.orderComponent()}
-        {this.state.shouldRedirectToStatus ? <Redirect to="/status/"/> : null}
       </React.Fragment>
     )
   }
   StatusComponent = () => {
-    this.setState({shouldRedirectToStatus: false});
     return (
       <React.Fragment>
         {this.state.orders.map(this.renderOrder)}
