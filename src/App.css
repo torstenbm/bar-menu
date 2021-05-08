@@ -102,6 +102,8 @@ header #logo {
   color: black;
   line-height: 1;
   font-size: 40px;
+  padding: 20px;
+  line-height: 56px;
 }
 
 header #logo .icon {

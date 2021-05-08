@@ -1,8 +1,7 @@
 import React from "react";
 import firebase from 'firebase';
 
-
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom";
 
 import "./App.css";
 
@@ -32,6 +31,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+
     try {
       const firebaseConfig = {
         apiKey: "AIzaSyA52ojVkvuUojaMSSFId0FK8cE6ShtbOSc",
@@ -52,6 +52,7 @@ class App extends React.Component {
       drinks: [],
       orders: [],
       selectedDrink: null,
+      shouldRedirectToStatus: false,
       name: ""
     };
     this.handleChange = this.handleChange.bind(this);
@@ -64,7 +65,7 @@ class App extends React.Component {
       name: this.state.name || "Anonymous",
       status: "No está listo"
     });
-    window.location.href = "/status"
+    window.location.href = "/status";
   }
 
 
@@ -92,7 +93,8 @@ class App extends React.Component {
         <h3>
           {order.drink.name}
         </h3>
-        <div style={{"color": order.status === "Listo" ? "green" : "red"}} className="status">Estado: {order.status}</div>
+        <div style={{"color": order.status === "Listo" ? "green" : "red"}}
+             className="status">Estado: {order.status}</div>
         <img alt="drink" src={order.drink.image}/>
       </div>
     )
@@ -106,7 +108,8 @@ class App extends React.Component {
         <h3>
           {order.drink.name}
         </h3>
-        <div style={{"color": order.status === "Listo" ? "green" : "red"}} className="status">Estado: {order.status}</div>
+        <div style={{"color": order.status === "Listo" ? "green" : "red"}}
+             className="status">Estado: {order.status}</div>
         <img alt="drink" src={order.drink.image}/>
         <button style={{"margin": "20px 0"}} onClick={() => this.handleMakeReady(order)}>HACER LISTO</button>
         <button onClick={() => this.handleDelete(order)}>BORRAR</button>
@@ -131,10 +134,12 @@ class App extends React.Component {
       <React.Fragment>
         {this.state.drinks.map(this.renderDrink)}
         {this.orderComponent()}
+        {this.state.shouldRedirectToStatus ? <Redirect to="/status/"/> : null}
       </React.Fragment>
     )
   }
   StatusComponent = () => {
+    this.setState({shouldRedirectToStatus: false});
     return (
       <React.Fragment>
         {this.state.orders.map(this.renderOrder)}
@@ -157,7 +162,7 @@ class App extends React.Component {
             <Link style={{textDecoration: 'none'}} to="/">
               <div id="logo">
                 <div>
-                  EL BAR
+                  EL CUMPLEAÑOS DE MIA
                 </div>
               </div>
             </Link>
