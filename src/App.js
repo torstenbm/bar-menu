@@ -13,8 +13,11 @@ class App extends React.Component {
     });
     firebase.database().ref("orders").on("value", snapshot => {
       const obj = snapshot.val() || [];
-      const orders = Object.values(obj)
-      this.setState({orders: orders});
+      //const orders = Object.values(obj)
+      const orders = Object.entries(obj)
+      const orderlist = []
+      orders.map(([k,v]) => orderlist.push({...v, id: k}));
+      this.setState({orders: orderlist});
     });
   }
 
@@ -23,7 +26,10 @@ class App extends React.Component {
   }
 
   handleMakeReady = order => {
-    console.log(order)
+    firebase.database().ref(`orders/${order.id}`).set({
+      ...order,
+      status: "Listo"
+    })
   }
   handleDelete = order => {
     console.log(order)
