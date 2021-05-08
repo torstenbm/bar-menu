@@ -164,7 +164,7 @@ class App extends React.Component {
             <Link style={{textDecoration: 'none'}} to="/">
               <div id="logo">
                 <div>
-                  EL CUMPLEAÑOS DE MIA
+                  MIA 25 AÑOS, ¡ARRIBA!
                 </div>
               </div>
             </Link>
