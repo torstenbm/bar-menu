@@ -139,7 +139,7 @@ class App extends React.Component {
   StatusComponent = () => {
     return (
       <React.Fragment>
-        {this.state.orders.map(this.renderOrder)}
+        {this.state.orders.reverse().map(this.renderOrder)}
       </React.Fragment>
     )
   }
